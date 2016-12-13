@@ -84,11 +84,9 @@ export class QuotesComponent implements OnInit {
     var quotes = this.quotes;
     this._postsService.deleteQuote(quote._id)
       .subscribe(data => {
-        if (data.n == 1) {
-          for (var i = 0; i < quotes.length; i++) {
-            if (quotes[i]._id == quote._id) {
-              quotes.splice(i, 1);
-            }
+        for (var i = 0; i < quotes.length; i++) {
+          if (quotes[i]._id == quote._id) {
+            quotes.splice(i, 1);
           }
         }
       })

@@ -2,7 +2,7 @@ import  {Injectable} from '@angular/core';
 import  {Http, Headers} from '@angular/http';
 import  'rxjs/add/operator/map';
 
-var apiLink = 'http://145.24.222.129:8000/api/quotes/';
+var apiLink = 'http://localhost:8000/api/quotes/';
 
 @Injectable()
 export class PostService {
@@ -32,6 +32,11 @@ export class PostService {
 
   deleteQuote(id) {
     return this.http.delete(apiLink + id)
+      .map(res => res.json());
+  }
+
+  singleQuote(id) {
+    return this.http.get(apiLink + id)
       .map(res => res.json());
   }
 }

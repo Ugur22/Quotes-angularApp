@@ -9,21 +9,24 @@
   </div>
 </div>
 <div class="quote-list">
-  <div *ngFor="let quote of quotes">
+  <div id="quotes" *ngFor="let quote of quotes">
     <div class="col-md-1">
       <input type="checkbox" [checked]="quote.isCompleted" (click)="updateStatus(quote)">
     </div>
     <div class="col-md-7">
-      <span [class.hidden]="quote.isEditMode">{{quote.text}}</span>
-      <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text"
-             (keypress)="updateQuoteText($event,quote)">
-      <input type="button" [class.hidden]="!quote.isEditMode" value="Cancel" (click)="setEditState(quote,false)"
-             class="btn btn-warning">
+      <p> {{quote.text}}</p>
+      <!--<span [class.hidden]="quote.isEditMode">{{quote.text}}</span>-->
+      <!--<input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text"-->
+      <!--(keypress)="updateQuoteText($event,quote)">-->
+      <!--<input type="button" [class.hidden]="!quote.isEditMode" value="Cancel" (click)="setEditState(quote,false)"-->
+      <!--class="btn btn-warning">-->
     </div>
     <div class="col-md-4 btns">
       <input (click)="deleteQuote(quote)" type="button" class="btn btn-danger pull-right" value="Delete">
-      <input [class.disabled]="quote.isCompleted" (click)="setEditState(quote,true)" type="button"
-             class="btn btn-default pull-right" value="Edit">
+      <!--<input [class.disabled]="quote.isCompleted" (click)="setEditState(quote,true)" type="button"-->
+      <!--class="btn btn-default pull-right" value="Edit">-->
+      <input type="button" [routerLink]="['/quote-details', quote._id]" class="btn btn-default pull-right"
+             value="Details">
     </div>
   </div>
 </div>

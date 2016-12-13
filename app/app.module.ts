@@ -5,6 +5,7 @@ import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {QuotesComponent} from './components/quotes/quotes.component';
+import {QuotesDetailComponent} from './components/quotes/quotesDetail.component';
 import {AboutComponent} from './components/about/about.component';
 import {HomeComponent} from './components/home/home.component';
 import {routing} from './app.routing';
@@ -12,7 +13,7 @@ import {routing} from './app.routing';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpModule, routing],
-  declarations: [AppComponent, QuotesComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent, QuotesComponent, QuotesDetailComponent, AboutComponent, HomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
