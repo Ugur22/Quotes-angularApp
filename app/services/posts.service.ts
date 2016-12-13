@@ -1,15 +1,37 @@
 import  {Injectable} from '@angular/core';
-import  {Http} from '@angular/http';
+import  {Http, Headers} from '@angular/http';
 import  'rxjs/add/operator/map';
+
+var apiLink = 'http://145.24.222.129:8000/api/quotes/';
 
 @Injectable()
 export class PostService {
+
+
   constructor(private http: Http) {
-    console.log('Postsservice init');
   }
 
-  getPosts() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts')
+  getQuotes() {
+    return this.http.get(apiLink)
+      .map(res => res.json());
+  }
+
+  saveQuote(quote) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(apiLink, JSON.stringify(quote), {headers: headers})
+      .map(res => res.json());
+  }
+
+  updateQuote(quote) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(apiLink + quote._id, JSON.stringify(quote), {headers: headers})
+      .map(res => res.json());
+  }
+
+  deleteQuote(id) {
+    return this.http.delete(apiLink + id)
       .map(res => res.json());
   }
 }

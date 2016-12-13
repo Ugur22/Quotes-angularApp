@@ -1,0 +1,14 @@
+.add-quotes-form.text-center {
+  width: 77%;
+  margin: 0 auto;
+}
+
+.quote-list {
+  width: 77%;
+  margin: 0 auto;
+}
+
+.btns input {
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
