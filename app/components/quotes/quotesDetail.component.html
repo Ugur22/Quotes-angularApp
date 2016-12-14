@@ -1,14 +1,21 @@
 <h3>Quote Detail</h3>
 
 <div *ngIf="quote">
-  <h2>Author: {{quote.author}}</h2>
-  <span [class.hidden]="quote.isEditMode">{{quote.text}}</span>
-  <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text">
+  <ul>
+    <li><span [class.hidden]="quote.isEditMode">{{quote.author}}</span></li>
+    <li><p [class.hidden]="quote.isEditMode">{{quote.text}}</p></li>
+    <li><b [class.hidden]="quote.isEditMode">{{quote.tag}}</b></li>
+  </ul>
+
+
+  <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text" autofocus #quoteText>
+  <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.author" autofocus #quoteAuthor>
+  <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.tag" autofocus #quoteTag>
   <input type="button" [class.hidden]="!quote.isEditMode" value="Cancel" (click)="setEditState(quote,false)"
          class="btn btn-warning">
-  <span>Tag: {{quote.tag}}</span>
+  <input type="button" [class.hidden]="!quote.isEditMode" value="update"
+         (click)="updateQuoteText($event,quoteText,quoteAuthor,quoteTag,quote)"
+         class="btn btn-warning">
   <input (click)="setEditState(quote,true)" type="button"
-         class="btn btn-default" value="Edit">
-  <input (click)="updateQuoteText($event,quote)" type="button"
-         class="btn btn-default" value="submit">
+         class="btn btn-default" value="Edit" [class.hidden]="quote.isEditMode">
 </div>

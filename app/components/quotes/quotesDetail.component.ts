@@ -31,18 +31,19 @@ export class QuotesDetailComponent implements OnInit {
     }
   }
 
-  updateQuoteText(event, quote) {
-    quote.text = event.target.value;
+
+  updateQuoteText(event, quoteText, quoteAuthor, quoteTag, quote) {
     var _quote = {
       _id: quote._id,
-      text: quote.text,
-      author: 'ugur ertas',
-      tag: 'peace'
+      text: quoteText.value,
+      author: quoteAuthor.value,
+      tag: quoteTag.value
     };
     this._postsService.updateQuote(_quote)
       .subscribe(data => {
         this.setEditState(quote, false);
       });
+    console.log("update quote");
   }
 
 }
