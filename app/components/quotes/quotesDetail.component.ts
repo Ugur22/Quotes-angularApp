@@ -17,10 +17,7 @@ export class QuotesDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      let id = params['id'];
-      this._postsService.singleQuote(id).subscribe(quote => this.quote = quote);
-    });
+    this.getQuote();
   }
 
   setEditState(quote, state) {
@@ -29,6 +26,13 @@ export class QuotesDetailComponent implements OnInit {
     } else {
       delete quote.isEditMode;
     }
+  }
+
+  getQuote() {
+    this.sub = this.route.params.subscribe(params => {
+      let id = params['id'];
+      this._postsService.singleQuote(id).subscribe(quote => this.quote = quote);
+    });
   }
 
 
@@ -42,6 +46,7 @@ export class QuotesDetailComponent implements OnInit {
     this._postsService.updateQuote(_quote)
       .subscribe(data => {
         this.setEditState(quote, false);
+        this.getQuote();
       });
     console.log("update quote");
   }
