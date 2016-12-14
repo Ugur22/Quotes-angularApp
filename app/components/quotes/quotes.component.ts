@@ -16,11 +16,19 @@ export class QuotesComponent implements OnInit {
 
   constructor(private _postsService: PostService) {
 
-
   }
 
   ngOnInit() {
     this.quotes = [];
+    this.getResults();
+
+  }
+
+  clearResults() {
+    this.quotes = [];
+  }
+
+  getResults() {
     this._postsService.getQuotes().subscribe(quotes => {
       this.quotes = quotes.items;
     })
@@ -43,42 +51,6 @@ export class QuotesComponent implements OnInit {
     })
   };
 
-  setEditState(quote, state) {
-    if (state) {
-      quote.isEditMode = state;
-    } else {
-      delete quote.isEditMode;
-    }
-  }
-
-  updateStatus(quote) {
-    var _quote = {
-      _id: _quote._id,
-      text: quote.text,
-      author: 'ertas',
-      tag: 'books'
-    };
-    this._postsService.updateQuote(_quote)
-      .subscribe(data => {
-        quote.isCompleted = !quote.isCompleted;
-      })
-  }
-
-  updateQuoteText(event, quote) {
-    if (event.which == 13) {
-      quote.text = event.target.value;
-      var _quote = {
-        _id: quote._id,
-        text: quote.text,
-        author: 'ertas',
-        tag: 'books'
-      };
-      this._postsService.updateQuote(_quote)
-        .subscribe(data => {
-          this.setEditState(quote, false);
-        });
-    }
-  }
 
   deleteQuote(quote) {
     var quotes = this.quotes;

@@ -32,7 +32,13 @@ export class PostService {
 
   deleteQuote(id) {
     return this.http.delete(apiLink + id)
-      .map(res => res.json());
+      .map(res => {
+        if (res.status < 200 || res.status >= 300) {
+          throw new Error('This request has failed ' + res.status);
+        } else {
+          res.json();
+        }
+      });
   }
 
   singleQuote(id) {

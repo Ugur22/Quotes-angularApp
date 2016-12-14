@@ -9,26 +9,23 @@
   </div>
 </div>
 <div class="quote-list">
-  <div id="quotes" *ngFor="let quote of quotes">
-    <div class="col-md-1">
-      <input type="checkbox" [checked]="quote.isCompleted" (click)="updateStatus(quote)">
-    </div>
-    <div class="col-md-7">
-      <p> {{quote.text}}</p>
-      <!--<span [class.hidden]="quote.isEditMode">{{quote.text}}</span>-->
-      <!--<input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text"-->
-      <!--(keypress)="updateQuoteText($event,quote)">-->
-      <!--<input type="button" [class.hidden]="!quote.isEditMode" value="Cancel" (click)="setEditState(quote,false)"-->
-      <!--class="btn btn-warning">-->
-    </div>
-    <div class="col-md-4 btns">
-      <input (click)="deleteQuote(quote)" type="button" class="btn btn-danger pull-right" value="Delete">
-      <!--<input [class.disabled]="quote.isCompleted" (click)="setEditState(quote,true)" type="button"-->
-      <!--class="btn btn-default pull-right" value="Edit">-->
-      <input type="button" [routerLink]="['/quote-details', quote._id]" class="btn btn-default pull-right"
-             value="Details">
-    </div>
-  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Text</th>
+      <th>Details</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tr *ngFor="let quote of quotes">
+      <td>{{quote._id}}</td>
+      <td>{{quote.text}}</td>
+      <td><input type="button" [routerLink]="['/quote-details', quote._id]" class="btn btn-default"
+                 value="Details"></td>
+      <td><input (click)="deleteQuote(quote)" type="button" class="btn btn-danger" value="Delete"></td>
+    </tr>
+  </table>
 </div>
 
 

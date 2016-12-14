@@ -1,7 +1,14 @@
-<h3>Quotes Detail</h3>
+<h3>Quote Detail</h3>
 
 <div *ngIf="quote">
-  <h2>{{quote.author}}</h2>
-  <p>{{quote.text}}</p>
-  <span>{{quote.tag}}</span>
+  <h2>Author: {{quote.author}}</h2>
+  <span [class.hidden]="quote.isEditMode">{{quote.text}}</span>
+  <input type="text" [class.hidden]="!quote.isEditMode" [value]="quote.text">
+  <input type="button" [class.hidden]="!quote.isEditMode" value="Cancel" (click)="setEditState(quote,false)"
+         class="btn btn-warning">
+  <span>Tag: {{quote.tag}}</span>
+  <input (click)="setEditState(quote,true)" type="button"
+         class="btn btn-default" value="Edit">
+  <input (click)="updateQuoteText($event,quote)" type="button"
+         class="btn btn-default" value="submit">
 </div>

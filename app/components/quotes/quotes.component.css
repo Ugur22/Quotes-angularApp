@@ -12,3 +12,11 @@
   margin-right: 5px;
   margin-bottom: 3px;
 }
+
+.col-md-1 {
+  width: 67.333333%;
+}
+
+table {
+  width: 100%;
+}
